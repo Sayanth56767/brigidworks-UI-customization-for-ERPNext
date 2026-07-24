@@ -247,3 +247,5 @@ app_license = "mit"
 # List of apps whose translatable strings should be excluded from this app's translations.
 # ignore_translatable_strings_from = []
 
+app_include_js = "/assets/brigidworks/js/brigidworks_theme.js"
+extend_bootinfo = "brigidworks.boot.boot_session"

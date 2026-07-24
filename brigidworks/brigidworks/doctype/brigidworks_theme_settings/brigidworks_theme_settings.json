@@ -1,0 +1,80 @@
+{
+ "doctype": "DocType",
+ "name": "Brigidworks Theme Settings",
+ "module": "Brigidworks",
+ "custom": 0,
+ "issingle": 1,
+ "istable": 0,
+ "editable_grid": 0,
+ "track_changes": 1,
+ "engine": "InnoDB",
+ "fields": [
+  {"fieldname": "section_layout", "fieldtype": "Section Break", "label": "Base Layout Colors"},
+  {"fieldname": "bg_color", "fieldtype": "Color", "label": "Background Color"},
+  {"fieldname": "fg_color", "fieldtype": "Color", "label": "Foreground Color"},
+  {"fieldname": "navbar_bg", "fieldtype": "Color", "label": "Navbar Background"},
+  {"fieldname": "card_bg", "fieldtype": "Color", "label": "Card Background"},
+  {"fieldname": "modal_bg", "fieldtype": "Color", "label": "Modal Background"},
+  {"fieldname": "popover_bg", "fieldtype": "Color", "label": "Popover Background"},
+  {"fieldname": "column_layout", "fieldtype": "Column Break"},
+  {"fieldname": "control_bg", "fieldtype": "Color", "label": "Input/Control Background"},
+  {"fieldname": "control_bg_on_gray", "fieldtype": "Color", "label": "Control Background (on Gray)"},
+  {"fieldname": "subtle_accent", "fieldtype": "Color", "label": "Subtle Accent"},
+  {"fieldname": "subtle_fg", "fieldtype": "Color", "label": "Subtle Foreground"},
+  {"fieldname": "fg_hover_color", "fieldtype": "Color", "label": "Hover Background"},
+  {"fieldname": "highlight_color", "fieldtype": "Color", "label": "Highlight Color"},
+
+  {"fieldname": "section_primary", "fieldtype": "Section Break", "label": "Primary & Buttons"},
+  {"fieldname": "primary_color", "fieldtype": "Color", "label": "Primary Color"},
+  {"fieldname": "btn_primary", "fieldtype": "Color", "label": "Primary Button Color"},
+  {"fieldname": "column_primary", "fieldtype": "Column Break"},
+  {"fieldname": "btn_default_bg", "fieldtype": "Color", "label": "Default Button Background"},
+  {"fieldname": "btn_default_hover_bg", "fieldtype": "Color", "label": "Default Button Hover Background"},
+
+  {"fieldname": "section_borders", "fieldtype": "Section Break", "label": "Borders"},
+  {"fieldname": "border_color", "fieldtype": "Color", "label": "Border Color"},
+  {"fieldname": "dark_border_color", "fieldtype": "Color", "label": "Dark Border Color"},
+  {"fieldname": "column_borders", "fieldtype": "Column Break"},
+  {"fieldname": "table_border_color", "fieldtype": "Color", "label": "Table Border Color"},
+  {"fieldname": "border_primary", "fieldtype": "Color", "label": "Primary Border Color"},
+
+  {"fieldname": "section_sidebar", "fieldtype": "Section Break", "label": "Sidebar & Navbar"},
+  {"fieldname": "sidebar_select_color", "fieldtype": "Color", "label": "Sidebar Selected Item Color"},
+  {"fieldname": "column_sidebar", "fieldtype": "Column Break"},
+  {"fieldname": "navbar_height", "fieldtype": "Data", "label": "Navbar Height (e.g. 48px)"},
+
+  {"fieldname": "section_icons", "fieldtype": "Section Break", "label": "Icons"},
+  {"fieldname": "icon_stroke", "fieldtype": "Color", "label": "Icon Stroke Color"},
+  {"fieldname": "column_icons", "fieldtype": "Column Break"},
+  {"fieldname": "icon_fill_bg", "fieldtype": "Color", "label": "Icon Fill Background"},
+
+  {"fieldname": "section_scrollbar", "fieldtype": "Section Break", "label": "Scrollbar", "collapsible": 1},
+  {"fieldname": "scrollbar_thumb_color", "fieldtype": "Color", "label": "Scrollbar Thumb Color"},
+  {"fieldname": "column_scrollbar", "fieldtype": "Column Break"},
+  {"fieldname": "scrollbar_track_color", "fieldtype": "Color", "label": "Scrollbar Track Color"},
+
+  {"fieldname": "section_alerts", "fieldtype": "Section Break", "label": "Alert Colors", "collapsible": 1},
+  {"fieldname": "alert_bg_danger", "fieldtype": "Color", "label": "Danger Alert Background"},
+  {"fieldname": "alert_text_danger", "fieldtype": "Color", "label": "Danger Alert Text"},
+  {"fieldname": "alert_bg_warning", "fieldtype": "Color", "label": "Warning Alert Background"},
+  {"fieldname": "alert_text_warning", "fieldtype": "Color", "label": "Warning Alert Text"},
+  {"fieldname": "column_alerts", "fieldtype": "Column Break"},
+  {"fieldname": "alert_bg_info", "fieldtype": "Color", "label": "Info Alert Background"},
+  {"fieldname": "alert_text_info", "fieldtype": "Color", "label": "Info Alert Text"},
+  {"fieldname": "alert_bg_success", "fieldtype": "Color", "label": "Success Alert Background"},
+  {"fieldname": "alert_text_success", "fieldtype": "Color", "label": "Success Alert Text"},
+
+  {"fieldname": "section_advanced", "fieldtype": "Section Break", "label": "Advanced", "collapsible": 1},
+  {"fieldname": "custom_css", "fieldtype": "Code", "label": "Custom CSS (Advanced Overrides)", "options": "CSS",
+   "description": "Anything not covered above. This CSS is injected last, so it can override anything."}
+ ],
+ "permissions": [
+  {
+   "role": "System Manager",
+   "read": 1, "write": 1, "create": 1, "delete": 1,
+   "email": 1, "export": 1, "print": 1, "share": 1, "report": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC"
+}
