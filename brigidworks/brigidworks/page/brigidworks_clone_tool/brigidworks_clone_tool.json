@@ -1,0 +1,14 @@
+{
+ "doctype": "Page",
+ "module": "Brigidworks",
+ "name": "brigidworks-clone-tool",
+ "page_name": "brigidworks-clone-tool",
+ "title": "Brigidworks Clone Tool",
+ "standard": "Yes",
+ "system_page": 0,
+ "roles": [
+  {
+   "role": "System Manager"
+  }
+ ]
+}
