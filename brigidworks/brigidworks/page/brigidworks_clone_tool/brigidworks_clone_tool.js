@@ -35,6 +35,7 @@ frappe.pages['brigidworks-clone-tool'].on_page_load = function(wrapper) {
 		{ key: "property_setter", label: "Customizations to Doctypes/Forms" },
 		{ key: "workflow", label: "Workflows" },
 		{ key: "custom_doctype", label: "Custom DocTypes" }
+		{ key: "roles_permissions", label: "Roles, Role Profiles & Permissions" }
 	];
 	var checkbox_html = "";
 	customization_types.forEach(function(item) {
