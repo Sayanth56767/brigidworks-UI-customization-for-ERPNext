@@ -16,7 +16,7 @@ CUSTOMIZATION_MAP = {
 	],
 	"custom_doctype": [("DocType", {"custom": 1})],
 	"roles_permissions": [
-		("Role", {"is_standard": 0}),
+		("Role", {}),
 		("Role Profile", {}),
 		("Custom DocPerm", {}),
 	],
