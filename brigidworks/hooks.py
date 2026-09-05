@@ -26,7 +26,10 @@ app_license = "mit"
 
 # include js, css files in header of desk.html
 # app_include_css = "/assets/brigidworks/css/brigidworks.css"
-# app_include_js = "/assets/brigidworks/js/brigidworks.js"
+app_include_js = [
+	"/assets/brigidworks/js/brigidworks_theme.js",
+	"/assets/brigidworks/js/brigidworks_activity_sidebar.js",
+]
 
 # include js, css files in header of web template
 # web_include_css = "/assets/brigidworks/css/brigidworks.css"
@@ -137,13 +140,12 @@ app_license = "mit"
 # ---------------
 # Hook on document methods and events
 
-# doc_events = {
-# 	"*": {
-# 		"on_update": "method",
-# 		"on_cancel": "method",
-# 		"on_trash": "method"
-# 	}
-# }
+doc_events = {
+	"*": {
+		"after_insert": "brigidworks.activity_logger.log_create",
+		"on_update": "brigidworks.activity_logger.log_update",
+	}
+}
 
 # Scheduled Tasks
 # ---------------
@@ -247,5 +249,4 @@ app_license = "mit"
 # List of apps whose translatable strings should be excluded from this app's translations.
 # ignore_translatable_strings_from = []
 
-app_include_js = "/assets/brigidworks/js/brigidworks_theme.js"
 extend_bootinfo = "brigidworks.boot.boot_session"
