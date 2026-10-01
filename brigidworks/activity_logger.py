@@ -90,3 +90,15 @@ def log_update(doc, method=None):
 	if doc.flags.in_insert:
 		return
 	_write_log(doc, "Updated")
+
+
+def cleanup_activity_log(doc, method=None):
+	"""Runs on `on_trash`, which fires BEFORE Frappe's link-existence check
+	during delete. Wipes this document's own history rows so a document's
+	own activity log entries can never block its own deletion."""
+	if doc.doctype == "BW Activity Log":
+		return
+	frappe.db.delete("BW Activity Log", {
+		"reference_doctype": doc.doctype,
+		"reference_name": doc.name,
+	})
