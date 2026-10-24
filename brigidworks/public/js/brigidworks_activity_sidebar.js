@@ -8,14 +8,43 @@
 	const TOP_EXTRA_OFFSET = 12;
 	let refreshTimer = null;
 
-	const GROUP_ORDER = ["Created", "Updated", "Viewed", "Report Run", "Deleted"];
-	const ICONS = {
-		"Created": "➕",
-		"Updated": "➕",
-		"Viewed": "➕",
-		"Report Run": "➕",
-		"Deleted": "➕",
+	// ---------------------------------------------------------------
+	// CONFIG: order of the dropdown groups (top to bottom)
+	// ---------------------------------------------------------------
+	const GROUP_ORDER = ["Viewed", "Updated", "Created", "Report Run", "Deleted"];
+
+	// ---------------------------------------------------------------
+	// CONFIG: icon colors — change any hex value here to recolor that
+	// icon everywhere (group header and rows). Then rebuild + hard-refresh.
+	// ---------------------------------------------------------------
+	const ICON_COLORS = {
+		"Viewed": "#3b82f6",     // blue
+		"Updated": "#f59e0b",    // amber
+		"Created": "#22c55e",    // green
+		"Report Run": "#8b5cf6", // purple
+		"Deleted": "#ef4444",    // red
+		"Other": "#6b7280",      // grey fallback
 	};
+
+	// ---------------------------------------------------------------
+	// Icons: inline SVGs drawn with currentColor, so they take on the
+	// color set above. 24x24 viewBox, stroke style.
+	// ---------------------------------------------------------------
+	const SVG_OPEN = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">';
+	const ICON_PATHS = {
+		"Viewed": '<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>',
+		"Updated": '<path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>',
+		"Created": '<circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/>',
+		"Report Run": '<line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/>',
+		"Deleted": '<polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/>',
+		"Other": '<circle cx="12" cy="12" r="3"/>',
+	};
+
+	function iconHtml(action) {
+		const key = ICON_PATHS[action] ? action : "Other";
+		const color = ICON_COLORS[key] || ICON_COLORS["Other"];
+		return `<span class="bw-icon" style="color:${color}">${SVG_OPEN}${ICON_PATHS[key]}</svg></span>`;
+	}
 
 	function getNavbarHeight() {
 		const navbar = document.querySelector(".navbar");
@@ -107,6 +136,17 @@
 				font-size: 16px;
 				margin-bottom: 12px;
 			}
+			.bw-icon {
+				display: inline-flex;
+				align-items: center;
+				justify-content: center;
+				flex-shrink: 0;
+			}
+			.bw-icon svg {
+				width: 16px;
+				height: 16px;
+				display: block;
+			}
 			.bw-group {
 				margin-bottom: 6px;
 			}
@@ -122,6 +162,11 @@
 			}
 			.bw-group-header:hover {
 				background: var(--fg-hover-color, #f5f5f5);
+			}
+			.bw-group-title {
+				display: flex;
+				align-items: center;
+				gap: 6px;
 			}
 			.bw-group-chevron {
 				transition: transform 0.15s ease;
@@ -152,9 +197,8 @@
 			.bw-activity-row:hover {
 				background: var(--fg-hover-color, #f5f5f5);
 			}
-			.bw-activity-icon {
-				font-size: 14px;
-				flex-shrink: 0;
+			.bw-activity-row .bw-icon {
+				margin-top: 1px;
 			}
 			.bw-activity-subject {
 				font-weight: 500;
@@ -266,7 +310,7 @@
 			const collapsed = isGroupCollapsed(action);
 			const rowsHtml = groupRows.map(row => `
 				<div class="bw-activity-row" data-route="${row.route || ''}">
-					<div class="bw-activity-icon">${ICONS[action] || "•"}</div>
+					${iconHtml(action)}
 					<div>
 						<div class="bw-activity-subject">${frappe.utils.escape_html(row.subject || "")}</div>
 						<div class="bw-activity-time">${frappe.utils.escape_html(row.time_ago || "")}</div>
@@ -275,10 +319,10 @@
 			`).join("");
 
 			return `
-				<div class="bw-group ${collapsed ? "bw-group-collapsed" : ""}" data-action="${action}">
+				<div class="bw-group ${collapsed ? "bw-group-collapsed" : ""}" data-action="${frappe.utils.escape_html(action)}">
 					<div class="bw-group-header">
 						<span class="bw-group-chevron">▾</span>
-						<span>${ICONS[action] || "•"} ${frappe.utils.escape_html(action)}</span>
+						<span class="bw-group-title">${iconHtml(action)}<span>${frappe.utils.escape_html(action)}</span></span>
 						<span class="bw-group-count">${groupRows.length}</span>
 					</div>
 					<div class="bw-group-rows">${rowsHtml}</div>
