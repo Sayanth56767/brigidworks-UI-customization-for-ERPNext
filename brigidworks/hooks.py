@@ -8,6 +8,7 @@ app_license = "mit"
 app_include_js = [
 	"/assets/brigidworks/js/brigidworks_theme.js",
 	"/assets/brigidworks/js/brigidworks_activity_sidebar.js",
+	"/assets/brigidworks/js/brigidworks_draft_recovery.js",
 ]
 
 doc_events = {
